@@ -1,6 +1,11 @@
 from flask import Flask, jsonify, render_template
 import sys
 import traceback
+# Import required classes and helpers
+from services.side_effects_analyzer import SideEffectsAnalyzer
+from services.interaction_checker import InteractionChecker
+from services.image_processor import ImageProcessor
+from utils.helpers import validate_drug_name
 
 # Create app first
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -49,7 +54,7 @@ def interactive_mode():
         
         if choice == "1":
             drug_name = input("Enter drug name: ").strip()
-            if validate_input(drug_name):
+            if validate_drug_name(drug_name):
                 result = analyzer.analyze(drug_name)
                 print(f"\nSide Effects:\n{result}\n")
             else:
@@ -57,7 +62,7 @@ def interactive_mode():
         
         elif choice == "2":
             drugs = input("Enter drug names (comma-separated): ").strip().split(",")
-            drugs = [d.strip() for d in drugs if validate_input(d.strip())]
+            drugs = [d.strip() for d in drugs if validate_drug_name(d.strip())]
             if len(drugs) >= 2:
                 result = checker.check(drugs)
                 print(f"\nInteractions:\n{result}\n")
