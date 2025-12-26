@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Side Effects Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>💊 Drug Side Effects Analyzer</h1>
+                <p>Get detailed information about drug side effects and interactions</p>
+            </div>
+        </header>
+
+        <!-- API Status Banner -->
+        <div class="api-status-banner" id="apiStatusBanner">
+            <div class="banner-content">
+                <span class="banner-icon">⚠️</span>
+                <div class="banner-text">
+                    <strong>Demo Mode Active</strong>
+                    <p>OpenAI API quota exceeded. Showing sample data. To enable real-time analysis, please update your API billing.</p>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <!-- Navigation Tabs -->
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab('side-effects')">
+                    <span class="icon">🔍</span> Side Effects
+                </button>
+                <button class="tab-button" onclick="switchTab('interactions')">
+                    <span class="icon">⚠️</span> Interactions
+                </button>
+                <button class="tab-button" onclick="switchTab('image-analysis')">
+                    <span class="icon">📸</span> Image Analysis
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Side Effects Tab -->
+                <div id="side-effects" class="tab-pane active">
+                    <div class="card">
+                        <h2>Find Drug Side Effects</h2>
+                        <p class="description">Enter a drug name to discover its potential side effects</p>
+                        
+                        <div class="form-group">
+                            <input 
+                                type="text" 
+                                id="drugName" 
+                                placeholder="e.g., Aspirin, Ibuprofen, Paracetamol"
+                                class="input-field"
+                            >
+                            <button onclick="analyzeSideEffects()" class="btn btn-primary">
+                                Analyze
+                            </button>
+                        </div>
+
+                        <div id="sideEffectsLoading" class="loading hidden">
+                            <div class="spinner"></div>
+                            <p>Analyzing drug information...</p>
+                        </div>
+
+                        <div id="sideEffectsResult" class="result-container hidden">
+                            <div class="result-content"></div>
+                        </div>
+
+                        <div id="sideEffectsError" class="error hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Interactions Tab -->
+                <div id="interactions" class="tab-pane">
+                    <div class="card">
+                        <div class="section-header">
+                            <div class="header-icon">⚠️</div>
+                            <div>
+                                <h2>Drug Interaction Checker</h2>
+                                <p class="description">Add multiple medications to analyze potential interactions and contraindications</p>
+                            </div>
+                        </div>
+                        
+                        <div class="drug-tags-container">
+                            <div class="input-with-tags">
+                                <div id="drugTags" class="drug-tags"></div>
+                                <input 
+                                    type="text" 
+                                    id="drugInteractionInput"
+                                    placeholder="Type drug name and press Enter"
+                                    class="tag-input"
+                                    onkeypress="handleDrugTagInput(event)"
+                                >
+                            </div>
+                            <div class="help-text">
+                                <span class="hint-icon">💡</span>
+                                <span>Add at least 2 drugs to check interactions</span>
+                            </div>
+                        </div>
+
+                        <button onclick="checkInteractions()" class="btn btn-primary btn-large">
+                            <span class="btn-icon">🔍</span>
+                            Analyze Interactions
+                        </button>
+
+                        <div id="interactionsLoading" class="loading hidden">
+                            <div class="spinner"></div>
+                            <p>Analyzing drug interactions...</p>
+                        </div>
+
+                        <div id="interactionsResult" class="result-container hidden">
+                            <div class="result-header">
+                                <span class="result-icon">📊</span>
+                                <h3>Interaction Analysis Results</h3>
+                            </div>
+                            <div class="result-content"></div>
+                        </div>
+
+                        <div id="interactionsError" class="error hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Image Analysis Tab -->
+                <div id="image-analysis" class="tab-pane">
+                    <div class="card">
+                        <div class="section-header">
+                            <div class="header-icon">📸</div>
+                            <div>
+                                <h2>Image Analysis & OCR</h2>
+                                <p class="description">Upload prescription, medication label, or drug packaging for text extraction and analysis</p>
+                            </div>
+                        </div>
+                        
+                        <div class="upload-area-container">
+                            <div class="file-upload-zone" id="dropZone">
+                                <input 
+                                    type="file" 
+                                    id="drugImage" 
+                                    accept="image/*"
+                                    onchange="previewImage()"
+                                    class="file-input"
+                                >
+                                <label for="drugImage" class="file-label-modern">
+                                    <div class="upload-icon-modern">📤</div>
+                                    <div class="upload-text">
+                                        <strong>Drop your image here or click to browse</strong>
+                                        <p>Supports: PNG, JPG, JPEG, GIF (Max 16MB)</p>
+                                    </div>
+                                    <div class="upload-actions">
+                                        <span class="upload-btn-text">Choose File</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div id="imagePreview" class="image-preview-modern hidden">
+                                <div class="preview-header">
+                                    <span class="preview-title">📷 Image Preview</span>
+                                    <button onclick="clearImage()" class="btn-clear">✕</button>
+                                </div>
+                                <div class="preview-image-container">
+                                    <img id="previewImg" src="" alt="Preview">
+                                </div>
+                                <button onclick="analyzeImage()" class="btn btn-primary btn-large">
+                                    <span class="btn-icon">🔬</span>
+                                    Extract & Analyze Text
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="imageLoading" class="loading hidden">
+                            <div class="spinner"></div>
+                            <p>Processing image and extracting text...</p>
+                        </div>
+
+                        <div id="imageResult" class="result-container hidden">
+                            <div class="result-header">
+                                <span class="result-icon">📝</span>
+                                <h3>Extracted Information</h3>
+                            </div>
+                            <div class="result-content"></div>
+                        </div>
+
+                        <div id="imageError" class="error hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>⚠️ <strong>Disclaimer:</strong> This tool provides informational content only and should not replace professional medical advice. Always consult with a healthcare provider.</p>
+            <p>&copy; 2025 Drug Side Effects Analyzer. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
