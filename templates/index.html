@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Side Effects Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>💊 Drug Side Effects Analyzer</h1>
+                <p>Get detailed information about drug side effects and interactions</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- Navigation Tabs -->
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab('side-effects')">
+                    <span class="icon">🔍</span> Side Effects
+                </button>
+                <button class="tab-button" onclick="switchTab('interactions')">
+                    <span class="icon">⚠️</span> Interactions
+                </button>
+                <button class="tab-button" onclick="switchTab('image-analysis')">
+                    <span class="icon">📸</span> Image Analysis
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Side Effects Tab -->
+                <div id="side-effects" class="tab-pane active">
+                    <div class="card">
+                        <h2>Find Drug Side Effects</h2>
+                        <p class="description">Enter a drug name to discover its potential side effects</p>
+                        
+                        <div class="form-group">
+                            <input 
+                                type="text" 
+                                id="drugName" 
+                                placeholder="e.g., Aspirin, Ibuprofen, Paracetamol"
+                                class="input-field"
+                            >
+                            <button onclick="analyzeSideEffects()" class="btn btn-primary">
+                                Analyze
+                            </button>
+                        </div>
+
+                        <div id="sideEffectsLoading" class="loading hidden">
+                            <div class="spinner"></div>
+                            <p>Analyzing drug information...</p>
+                        </div>
+
+                        <div id="sideEffectsResult" class="result-container hidden">
+                            <div class="result-content"></div>
+                        </div>
+
+                        <div id="sideEffectsError" class="error hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Interactions Tab -->
+                <div id="interactions" class="tab-pane">
+                    <div class="card">
+                        <h2>Check Drug Interactions</h2>
+                        <p class="description">Enter multiple drugs to check for potential interactions</p>
+                        
+                        <div class="form-group">
+                            <div id="drugInputs">
+                                <div class="drug-input-row">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Drug 1"
+                                        class="input-field drug-input"
+                                    >
+                                    <button onclick="addDrugInput()" class="btn btn-secondary">+</button>
+                                </div>
+                                <div class="drug-input-row">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Drug 2"
+                                        class="input-field drug-input"
+                                    >
+                                </div>
+                            </div>
+                            <button onclick="checkInteractions()" class="btn btn-primary" style="margin-top: 15px;">
+                                Check Interactions
+                            </button>
+                        </div>
+
+                        <div id="interactionsLoading" class="loading hidden">
+                            <div class="spinner"></div>
+                            <p>Checking drug interactions...</p>
+                        </div>
+
+                        <div id="interactionsResult" class="result-container hidden">
+                            <div class="result-content"></div>
+                        </div>
+
+                        <div id="interactionsError" class="error hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Image Analysis Tab -->
+                <div id="image-analysis" class="tab-pane">
+                    <div class="card">
+                        <h2>Analyze Drug Image</h2>
+                        <p class="description">Upload an image of a drug or medication packaging</p>
+                        
+                        <div class="form-group">
+                            <div class="file-upload">
+                                <input 
+                                    type="file" 
+                                    id="drugImage" 
+                                    accept="image/*"
+                                    onchange="previewImage()"
+                                    class="file-input"
+                                >
+                                <label for="drugImage" class="file-label">
+                                    <span class="upload-icon">📤</span>
+                                    <span>Click to upload or drag and drop</span>
+                                    <p>PNG, JPG, GIF up to 16MB</p>
+                                </label>
+                            </div>
+
+                            <div id="imagePreview" class="image-preview hidden">
+                                <img id="previewImg" src="" alt="Preview">
+                                <button onclick="clearImage()" class="btn btn-secondary">Clear</button>
+                            </div>
+
+                            <button onclick="analyzeImage()" class="btn btn-primary" style="margin-top: 15px;">
+                                Analyze Image
+                            </button>
+                        </div>
+
+                        <div id="imageLoading" class="loading hidden">
+                            <div class="spinner"></div>
+                            <p>Analyzing image...</p>
+                        </div>
+
+                        <div id="imageResult" class="result-container hidden">
+                            <div class="result-content"></div>
+                        </div>
+
+                        <div id="imageError" class="error hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>⚠️ <strong>Disclaimer:</strong> This tool provides informational content only and should not replace professional medical advice. Always consult with a healthcare provider.</p>
+            <p>&copy; 2025 Drug Side Effects Analyzer. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
