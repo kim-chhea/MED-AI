@@ -725,3 +725,5 @@ MIT License - Open Source
 ⭐ Star this repo if you found it helpful! ⭐
 
 </div>
+#   d r u g - s i d e - e f f e c t s - a n a l y z e r  
+ 
