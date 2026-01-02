@@ -1,0 +1,121 @@
+drug_name,side_effect
+aspirin,stomach upset
+aspirin,bleeding
+aspirin,nausea
+aspirin,heartburn
+ibuprofen,stomach pain
+ibuprofen,dizziness
+ibuprofen,nausea
+ibuprofen,headache
+paracetamol,liver damage
+paracetamol,nausea
+paracetamol,rash
+paracetamol,allergic reaction
+metformin,diarrhea
+metformin,nausea
+metformin,stomach upset
+metformin,vitamin b12 deficiency
+lisinopril,dizziness
+lisinopril,dry cough
+lisinopril,headache
+lisinopril,fatigue
+simvastatin,muscle pain
+simvastatin,liver damage
+simvastatin,headache
+simvastatin,nausea
+omeprazole,headache
+omeprazole,diarrhea
+omeprazole,stomach pain
+omeprazole,nausea
+amlodipine,swelling
+amlodipine,fatigue
+amlodipine,dizziness
+amlodipine,flushing
+levothyroxine,weight loss
+levothyroxine,hair loss
+levothyroxine,insomnia
+levothyroxine,tremors
+atorvastatin,muscle pain
+atorvastatin,joint pain
+atorvastatin,diarrhea
+atorvastatin,liver damage
+metoprolol,fatigue
+metoprolol,dizziness
+metoprolol,cold hands
+metoprolol,depression
+losartan,dizziness
+losartan,fatigue
+losartan,back pain
+losartan,cough
+albuterol,tremors
+albuterol,nervousness
+albuterol,headache
+albuterol,rapid heartbeat
+gabapentin,dizziness
+gabapentin,drowsiness
+gabapentin,fatigue
+gabapentin,weight gain
+hydrochlorothiazide,dizziness
+hydrochlorothiazide,frequent urination
+hydrochlorothiazide,muscle cramps
+hydrochlorothiazide,weakness
+prednisone,weight gain
+prednisone,mood changes
+prednisone,insomnia
+prednisone,increased appetite
+amoxicillin,diarrhea
+amoxicillin,nausea
+amoxicillin,rash
+amoxicillin,yeast infection
+azithromycin,diarrhea
+azithromycin,nausea
+azithromycin,stomach pain
+azithromycin,vomiting
+ciprofloxacin,nausea
+ciprofloxacin,diarrhea
+ciprofloxacin,dizziness
+ciprofloxacin,headache
+warfarin,bleeding
+warfarin,bruising
+warfarin,nausea
+warfarin,hair loss
+clopidogrel,bleeding
+clopidogrel,bruising
+clopidogrel,stomach upset
+clopidogrel,headache
+sertraline,nausea
+sertraline,insomnia
+sertraline,drowsiness
+sertraline,sexual dysfunction
+escitalopram,nausea
+escitalopram,fatigue
+escitalopram,insomnia
+escitalopram,weight gain
+fluoxetine,nausea
+fluoxetine,insomnia
+fluoxetine,anxiety
+fluoxetine,sexual dysfunction
+alprazolam,drowsiness
+alprazolam,dizziness
+alprazolam,confusion
+alprazolam,memory problems
+clonazepam,drowsiness
+clonazepam,dizziness
+clonazepam,coordination problems
+clonazepam,confusion
+tramadol,nausea
+tramadol,dizziness
+tramadol,constipation
+tramadol,drowsiness
+oxycodone,constipation
+oxycodone,nausea
+oxycodone,drowsiness
+oxycodone,dizziness
+hydrocodone,constipation
+hydrocodone,nausea
+hydrocodone,drowsiness
+hydrocodone,dizziness
+insulin,low blood sugar
+insulin,weight gain
+insulin,injection site reactions
+insulin,swelling

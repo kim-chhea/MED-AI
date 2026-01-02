@@ -1,5 +1,15 @@
+# Web Framework
 flask
-openai
-python-dotenv
+
+# Machine Learning
+scikit-learn
+pandas
+numpy
+joblib
+
+# Image Processing (OCR)
 Pillow
 pytesseract
+
+# Optional: For development
+python-dotenv

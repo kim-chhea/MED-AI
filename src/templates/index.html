@@ -20,8 +20,113 @@
             <div class="banner-content">
                 <span class="banner-icon">⚠️</span>
                 <div class="banner-text">
-                    <strong>Demo Mode Active</strong>
-                    <p>OpenAI API quota exceeded. Showing sample data. To enable real-time analysis, please update your API billing.</p>
+                    <strong>System Status</strong>
+                    <p>Checking system status...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dataset Management Section -->
+        <div class="dataset-manager">
+            <div class="dataset-header">
+                <div class="dataset-title">
+                    <span class="dataset-icon">📊</span>
+                    <h3>Dataset Source</h3>
+                </div>
+                <div class="dataset-toggle">
+                    <label class="toggle-label">Built-in Dataset</label>
+                    <label class="switch">
+                        <input type="checkbox" id="datasetToggle" onchange="toggleDatasetMode()">
+                        <span class="slider"></span>
+                    </label>
+                    <label class="toggle-label">Custom Dataset</label>
+                </div>
+            </div>
+
+            <!-- Custom Dataset Upload Section (Hidden by default) -->
+            <div id="customDatasetSection" class="custom-dataset-section hidden">
+                <div class="dataset-info">
+                    <p class="info-text">
+                        <span class="info-icon">ℹ️</span>
+                        Upload your own CSV datasets to train custom models. Download templates to see the required format.
+                    </p>
+                </div>
+
+                <div class="dataset-upload-grid">
+                    <!-- Side Effects Dataset Upload -->
+                    <div class="upload-card">
+                        <div class="upload-card-header">
+                            <span class="card-icon">💊</span>
+                            <h4>Side Effects Dataset</h4>
+                        </div>
+                        <div class="upload-card-body">
+                            <button onclick="downloadTemplate('side_effects')" class="btn btn-secondary btn-small" type="button">
+                                <span class="btn-icon">⬇️</span>
+                                Download Template
+                            </button>
+                            <div class="file-upload-wrapper">
+                                <input 
+                                    type="file" 
+                                    id="sideEffectsDataset" 
+                                    accept=".csv"
+                                    class="file-input-hidden"
+                                >
+                                <label for="sideEffectsDataset" class="btn btn-outline btn-small" style="cursor: pointer; margin: 0;">
+                                    <span class="btn-icon">📁</span>
+                                    <span id="sideEffectsFileName">Choose CSV File</span>
+                                </label>
+                            </div>
+                            <div id="sideEffectsUploadStatus" class="upload-status"></div>
+                        </div>
+                    </div>
+
+                    <!-- Interactions Dataset Upload -->
+                    <div class="upload-card">
+                        <div class="upload-card-header">
+                            <span class="card-icon">⚠️</span>
+                            <h4>Interactions Dataset</h4>
+                        </div>
+                        <div class="upload-card-body">
+                            <button onclick="downloadTemplate('interactions')" class="btn btn-secondary btn-small" type="button">
+                                <span class="btn-icon">⬇️</span>
+                                Download Template
+                            </button>
+                            <div class="file-upload-wrapper">
+                                <input 
+                                    type="file" 
+                                    id="interactionsDataset" 
+                                    accept=".csv"
+                                    class="file-input-hidden"
+                                >
+                                <label for="interactionsDataset" class="btn btn-outline btn-small" style="cursor: pointer; margin: 0;">
+                                    <span class="btn-icon">📁</span>
+                                    <span id="interactionsFileName">Choose CSV File</span>
+                                </label>
+                            </div>
+                            <div id="interactionsUploadStatus" class="upload-status"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Train Models Button -->
+                <div class="train-section">
+                    <button onclick="trainCustomModels()" id="trainButton" class="btn btn-success btn-large" disabled>
+                        <span class="btn-icon">🤖</span>
+                        Train Models with Custom Data
+                    </button>
+                    <div id="trainStatus" class="train-status hidden"></div>
+                    <div id="trainLoading" class="loading hidden">
+                        <div class="spinner"></div>
+                        <p>Training models... This may take a few moments.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Built-in Dataset Info (Shown by default) -->
+            <div id="builtinDatasetInfo" class="builtin-info">
+                <div class="info-badge">
+                    <span class="badge-icon">✓</span>
+                    <span class="badge-text">Using built-in dataset with 120 side effects and 87 interactions</span>
                 </div>
             </div>
         </div>
